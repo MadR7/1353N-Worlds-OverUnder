@@ -25,6 +25,13 @@ pros::ADIDigitalOut hangPistons('C');
 pros::Imu imu(17);
 
 pros::Distance hangDist(1);
+pros::Distance backResetDist(9);
+pros::Distance leftResetDist(10);
+pros::Distance rightResetDist(2);
+
+pros::ADIDigitalIn leftBumper('F');
+pros::ADIDigitalIn rightBumper('G');
+
 
 // tracking wheels
 // horizontal tracking wheel encoder. Rotation sensor, port 15, reversed (negative signs don't work due to a pros bug)
@@ -45,7 +52,7 @@ lemlib::ControllerSettings linearController(12, // proportional gain (kP)
                                             0, // anti windup
                                             1, // small error range, in inches
                                             100, // small error range timeout, in milliseconds
-                                            1, // large error range, in inches
+                                            3, // large error range, in inches
                                             250, // large error range timeout, in milliseconds
                                             20 // maximum acceleration (slew)
 );

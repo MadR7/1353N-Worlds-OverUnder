@@ -37,6 +37,7 @@
 #include "api.h"
 #include "config.hpp"
 #include "lemlib/api.hpp"
+#include "EZ-Template/api.hpp"
 #include "autons.hpp"
 #include "util.hpp"
 /**
@@ -44,7 +45,7 @@
  */
 //#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
-
+using namespace okapi::literals;
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do
  * Motor, you can use the namespace with the following commented out line.

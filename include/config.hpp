@@ -2,9 +2,20 @@
 
 #include "api.h"
 #include "lemlib/api.hpp"
+#include "EZ-Template/api.hpp"
+
+
 
 extern pros::Controller controller;
 extern lemlib::Chassis chassis;
+
+extern pros::ADIDigitalIn leftBumper;
+extern pros::ADIDigitalIn rightBumper;
+
+extern pros::Distance backResetDist;
+extern pros::Distance leftResetDist;
+extern pros::Distance rightResetDist;
+
 extern pros::ADIDigitalOut backLeftWing;
 extern pros::ADIDigitalOut backRightWing;
 extern pros::Motor intakemtr1;
@@ -13,3 +24,11 @@ extern pros::MotorGroup intake;
 extern pros::ADIDigitalOut hangPistons;
 extern bool hangState;
 extern pros::Distance hangDist;
+extern pros::Distance backResetDist;
+extern ez::Drive ezchassis;
+
+
+
+extern const int DRIVE_SPEED;
+extern const int TURN_SPEED;
+extern const int SWING_SPEED;

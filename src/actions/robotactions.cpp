@@ -27,7 +27,9 @@ void robotActions(){
   }else if (wing_state = OPENRIGHT){
     backRightWing.set_value(true);
   }
+}
 
 
+void backReset(){
 
 }
