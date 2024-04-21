@@ -37,6 +37,7 @@
 #include "api.h"
 #include "config.hpp"
 #include "lemlib/api.hpp"
+//#include "selector.hpp"
 #include "EZ-Template/api.hpp"
 #include "autons.hpp"
 #include "util.hpp"

@@ -7,20 +7,21 @@ void closeSideDoubleRush2(){
     chassis.waitUntilDone();
     pros::delay(300);
     intake.move_voltage(0);
-    chassis.moveToPoint(27, 17, 1000, {.forwards = false});
+    chassis.moveToPoint(27, 27, 1000, {.forwards = false});
     chassis.waitUntilDone();
     chassis.turnToHeading(270, 1000);
     chassis.waitUntilDone();
     intake.move_voltage(-12000);
     pros::delay(150);
-    chassis.moveToPoint(10, 17, 1000);
+    chassis.moveToPoint(10, 27, 1000);
     
     chassis.waitUntilDone();
     intake.move_voltage(12000);
-    chassis.turnToPoint(2, -18, 1000);
+    chassis.turnToPoint(2, -1, 1000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(9, 12, 1000);
+    chassis.moveToPoint(6, 9, 1000);
     chassis.waitUntilDone();
+    //intake.move_voltage
     pros::delay(300);
     intake.move_voltage(0);
     chassis.moveToPoint(51, 52.5, 4000, {.forwards = false});

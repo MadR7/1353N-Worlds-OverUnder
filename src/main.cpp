@@ -41,6 +41,7 @@ void initialize() {
   });
 */
 chassis.calibrate();
+//ezchassis.opcontrol_curve_default_set(0, 1);
  // ez::as::initialize();
   //ez::as::auton_selector.selected_auton_print();
   //pros::Task robotaction(robotActions);
@@ -101,11 +102,13 @@ void autonomous() {
  pros::delay(500);
  chassis.arcade(0, 0);
  */
- // farSideSafe();
+farSideWingRush();
+  //farSideSafeExperimental();
 // farSideMidRush();
- 
- //farSideSafeExperimental();
-    closeSideDoubleRushExperimental();
+ //closeSideSafe();
+ //closeSideMidRush();
+ //farSideMidRushExperimental();
+   // closeSideDoubleRushExperimental();
     //closeSideMidRushExperimental();
   // farSideMidRush();
   //ez::as::auton_selector.selected_auton_call();
@@ -136,8 +139,10 @@ void opcontrol() {
         
           // get joystick positions
         double leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        double rightX = 1.12* controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        double rightX = 1.11* controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         // move the chassis with curvature drive
+        //ezchassis.opcontrol_arcade_standard(ez::SPLIT);
+        
         chassis.arcade(leftY, rightX);
         // delay to save resources
         hangPistons.set_value(hangState);

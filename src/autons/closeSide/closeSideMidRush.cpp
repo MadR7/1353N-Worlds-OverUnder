@@ -37,19 +37,20 @@ void closeSideMidRush(){
     backRightWing.set_value(false);
     chassis.waitUntilDone();
     pros::delay(50);
-    intake.move_voltage(0);
-    chassis.moveToPose(50, 53, 300, 2000, {.forwards = false, .lead = 0, .maxSpeed = 90});
+    
+    chassis.moveToPose(52, 51, 300, 2000, {.forwards = false, .lead = 0, .maxSpeed = 90});
     chassis.waitUntilDone();
     backRightWing.set_value(true);
-    chassis.moveToPose(48, 54, 250, 2000, {.lead = 0, .maxSpeed = 90});
+    intake.move_voltage(0);
+    chassis.moveToPose(46, 56, 250, 2000, {.lead = 0, .maxSpeed = 90});
     chassis.waitUntilDone();
-    backRightWing.set_value(false);
     chassis.moveToPose(60, 46, 300, 2000, {.forwards = false, .lead = 0, .maxSpeed = 90});
     chassis.waitUntilDone();
+    backRightWing.set_value(false);
     intake.move_voltage(-12000);
-    chassis.moveToPose(11, 60, 270, 3500, {.lead = 0.1});
+    chassis.moveToPose(11, 60, 270, 3500, {.lead = 0.4});
     chassis.waitUntilDone();
-    chassis.moveToPose(50, 53, 300, 2000, {.forwards = false, .maxSpeed = 90});
+    //chassis.moveToPose(50, 53, 300, 2000, {.forwards = false, .maxSpeed = 90});
     //chassis.turnToHeading(90, 2000, {.maxSpeed = 80});
 }
 

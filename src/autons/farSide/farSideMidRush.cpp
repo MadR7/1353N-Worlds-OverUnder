@@ -136,8 +136,8 @@ void farSideMidRushExperimental(){
     backRightWing.set_value(false);
     chassis.waitUntilDone();
 
-    //Ryushing back and turning towards the goal with intake in ball
-    chassis.moveToPose(-39, 57, 210, 1500, {.forwards = false, .lead = 0, .maxSpeed = 120, .minSpeed = 40});
+    //Rushing back and turning towards the goal with intake in ball
+    chassis.moveToPose(-39, 59, 210, 1500, {.forwards = false, .lead = 0, .maxSpeed = 120, .minSpeed = 40});
     pros::delay(900);
 
     //Outtake the ball
@@ -146,37 +146,47 @@ void farSideMidRushExperimental(){
     chassis.waitUntilDone();
 
     //Turn towards the triball under the Horizontal bar
-    chassis.turnToPoint(0, 57, 1000, {.minSpeed = 60});
+    //chassis.turnToPoint(0, 57, 1000, {.minSpeed = 60});
+    chassis.turnToHeading(90, 700);
+    chassis.waitUntilDone();
+    
+    double x_val = backResetDist.get() * 0.0393701 + 12.5;
+    double y_val = leftResetDist.get() * 0.0393701 + 5;
+
+    chassis.setPose(-72 + x_val, 72-y_val, 90);
+
+    //chassis.moveToPose(-23, 0, 180, 3000);
+
     intake.move_voltage(12000);
     chassis.waitUntilDone();
-
-    //Move towards the triball under the Horizontal bar to intake it
-    chassis.moveToPoint(-4, 56, 2500);
+    chassis.moveToPoint(-7, 59, 1000);
     chassis.waitUntilDone();
     intake.move_voltage(0);
-
-    //Move backwards to descore the ball in the matchload zone
-//    chassis.moveToPose(-51, 54, 405, 1500, {.forwards = false, .lead = 0, .maxSpeed = 100, .minSpeed = 40});
-
-    chassis.moveToPose(-49, 47, 350, 1500, {.forwards = false, .lead = 0, .maxSpeed = 100});
-    pros::delay(500);
+    
+    chassis.moveToPose(-51, 50, 405, 1500, {.forwards = false, .lead = 0, .maxSpeed = 100, .minSpeed = 40});
+    pros::delay(350);
     backLeftWing.set_value(true);
     chassis.waitUntilDone();
-
+    
     //push triballs into the goal
-    chassis.turnToHeading(55, 1000, {.minSpeed = 50});
-    chassis.moveToPoint(-65, 20, 1200, {.forwards = false, .minSpeed = 127});
-    pros::delay(150);
-    backLeftWing.set_value(false);
+    chassis.turnToHeading(350, 1000, {.minSpeed = 30});
     chassis.waitUntilDone();
+    backLeftWing.set_value(false);
+    chassis.turnToHeading(45, 1000, {.minSpeed = 30});
+    chassis.waitUntilDone();
+    backRightWing.set_value(true);
 
+    chassis.moveToPoint(-65, 20, 1000, {.forwards = false, .minSpeed = 90});
+    chassis.waitUntilDone();
+    backRightWing.set_value(false);
     //reset position 
-    chassis.setPose(-65, 32, 0);
+    chassis.setPose(-65, 32, chassis.getPose().theta);
 
     //move backwards 
     chassis.moveToPoint(-65, 40, 1000, {.minSpeed = 60});
     chassis.waitUntilDone();
-//turn around 
+
+    //turn around 
     chassis.turnToHeading(165, 1000, {.maxSpeed = 80, .minSpeed = 20});
     chassis.waitUntilDone();
 
@@ -199,10 +209,10 @@ void farSideMidRushExperimental(){
     chassis.turnToHeading(90, 700);
     chassis.waitUntilDone();
 
-    double x_val = backResetDist.get() * 0.0393701 + 12.5;
-    double y_val = leftResetDist.get() * 0.0393701 -1.5;
+    double x_val2 = backResetDist.get() * 0.0393701 + 12.5;
+    double y_val2 = leftResetDist.get() * 0.0393701 -1.5;
 
-    chassis.setPose(-72 + x_val, 72-y_val, 90);
+    chassis.setPose(-72 + x_val2, 72-y_val2, 90);
     //chassis.moveToPose(-24, 0, 180, 7000, {.maxSpeed = 70});
      //turn the intake on
     intake.move_voltage(12000);
@@ -212,35 +222,21 @@ void farSideMidRushExperimental(){
     chassis.waitUntilDone();
     //turn around and score it in the goal
     //chassis.turnToPoint(-50, 0, 1000, {.minSpeed = 100});
-    chassis.turnToHeading(245, 1000);
+     chassis.turnToHeading(247, 600);
     chassis.waitUntilDone();
     intake.move_voltage(-12000);
-    pros::delay(250);
+    pros::delay(300);
     //turn around to intake the triball close the barrier in the middle
     //chassis.turnToPoint(-8, 0, 1000, {.minSpeed = 40});
-    chassis.turnToHeading(165, 1000, {.minSpeed = 50});
+    chassis.turnToHeading(165, 600, {.minSpeed = 50});
     chassis.waitUntilDone();
     intake.move_voltage(12000);
-    chassis.moveToPoint(-6, -2, 3000);
+    chassis.moveToPoint(-6, -3, 3000);
     chassis.waitUntilDone();   
-
-    chassis.turnToHeading(270, 1000, {.minSpeed = 50});
+    chassis.moveToPose(-13, 10, 270, 1500, {.forwards =false, .minSpeed = 60});
+    //chassis.turnToHeading(180, 1000, {.minSpeed = 50});
     chassis.waitUntilDone();
+    chassis.moveToPoint(-50, 0, 1500, {.forwards = true});
+    pros::delay(400);
     intake.move_voltage(-12000);
-    chassis.moveToPoint(-50, -2, 1500);
-
-    chassis.waitUntilDone();
-
-    chassis.moveToPoint(-35, 0, 3000, {.forwards = false});
-   /*
-    chassis.waitUntilDone();
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-8, 16, 2000);
-    //turn around to score the triball in the goal
-    chassis.turnToPoint(-50, 10, 1000, {.minSpeed = 100});
-    chassis.waitUntilDone();
-    chassis.moveToPoint(-50, 10, 2000);
-    intake.move_voltage(-12000);
-    */
-
 }

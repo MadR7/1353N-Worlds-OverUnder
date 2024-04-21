@@ -15,6 +15,7 @@ extern void closeSideDoubleRush2();
 //FAR SIDE
 extern void farSideSafe();
 extern void farSideSafeExperimental();
+extern void farSideMidRushExperimental();
 extern void farSideTopRush();
 extern void farSideMidRush();
-
+extern void farSideWingRush();
