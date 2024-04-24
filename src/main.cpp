@@ -1,4 +1,12 @@
 #include "main.h"
+#include "autons.hpp"
+
+
+bool backLeftWingState = false;
+bool backRightWingState = false;
+bool backLeftWingToggle = false;
+bool backRightWingToggle = false;
+
 
 /**
  * A callback function for LLEMU's center button.
@@ -13,7 +21,7 @@ ez::Drive ezchassis (
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is used as the sensor
-  ,{11, 12, 13}
+  ,{8, 12, 13}
 
   // IMU Port
   ,17
@@ -42,9 +50,10 @@ void initialize() {
 */
 chassis.calibrate();
 //ezchassis.opcontrol_curve_default_set(0, 1);
- // ez::as::initialize();
+ // 
   //ez::as::auton_selector.selected_auton_print();
   //pros::Task robotaction(robotActions);
+    /*
     pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
         while (true) {
@@ -58,6 +67,17 @@ chassis.calibrate();
             pros::delay(50);
         }
     });
+    */
+  ez::as::auton_selector.autons_add({
+      Auton{"CLOSE SIDE SAFE\nDoes the AWP Sequence", closeSideSafe},
+      Auton("FAR SIDE SAFE- Starts under the horizontal bar does the six ball sequence", farSideSafeExperimental),
+      Auton("CLOSE SIDE MID RUSH - Rushes to get the MIDDLE triball and does the AWP sequence", closeSideMidRushExperimental),
+      //Auton("CLOSE SIDE MID RUSH ELIMNS - Rushes to get the MIDDLE triball and does the AWP sequence\nDOES NOT RETURN TO THE MATCHLOAD POLE\n", closeSideMidRushExperimentalElimns),
+      Auton("CLOSE SIDE DOUBLE RUSH- Rushes to get the BOTH triballs and does the AWP sequence\n", closeSideDoubleRush),
+      //Auton("CLOSE SIDE DOUBLE RUSH ELIMNS - Rushes to get BOTH triballs and does the AWP sequence", closeSideDoubleRushExperimentalElimns),   
+      Auton("FAR SIDE MID RUSH- Rushes to get the MIDDLE triball and does the six ball sequeence", farSideMidRushExperimental),
+     });
+  ez::as::initialize();
 }
 
 /**
@@ -90,27 +110,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-// chassis.setPose(0, 0, 0);
-  //chassis.turnToHeading(180, 3000);
- // chassis.moveToPoint(0, 23.5, 1000);
- //chassis.moveToPose(0, 23.5, 90, 2000, {.lead = 0});
-  //closeSideDoubleRush2();
-
-
- /*
- chassis.arcade(100, 0);
- pros::delay(500);
- chassis.arcade(0, 0);
- */
-farSideWingRush();
-  //farSideSafeExperimental();
-// farSideMidRush();
- //closeSideSafe();
- //closeSideMidRush();
- //farSideMidRushExperimental();
-   // closeSideDoubleRushExperimental();
-    //closeSideMidRushExperimental();
-  // farSideMidRush();
+farSideSafeExperimental();
+ // farSideMidRushExperimental();
   //ez::as::auton_selector.selected_auton_call();
 }
 
@@ -129,11 +130,6 @@ farSideWingRush();
  */
 void opcontrol() {
   bool hangState = false;
-  bool backLeftWingState = false;
-  bool backRightWingState = false;
-
-  bool backLeftWingToggle = false;
-  bool backRightWingToggle = false;
   bool hangon = true;
 	while (true) {
         
@@ -142,12 +138,17 @@ void opcontrol() {
         double rightX = 1.11* controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         // move the chassis with curvature drive
         //ezchassis.opcontrol_arcade_standard(ez::SPLIT);
-        
         chassis.arcade(leftY, rightX);
         // delay to save resources
         hangPistons.set_value(hangState);
         backLeftWing.set_value(backLeftWingState);
         backRightWing.set_value(backRightWingState);
+
+        if (controller.get_digital_new_press(DIGITAL_B)){
+          automaticA();
+        }
+
+
         if (controller.get_digital(DIGITAL_L2) & !controller.get_digital(DIGITAL_L1) & !controller.get_digital(DIGITAL_R1) & !controller.get_digital(DIGITAL_R2)) {
           intake.move_voltage(12000);
         }

@@ -1,12 +1,24 @@
 #pragma once 
 
 
+//actions
+
+#include "util.hpp"
+extern void automaticA();
+
+extern void wingState();
+
+
+
 //CLOSE SIDE
 extern void closeSideSafe();
 extern void closeSideTopRush();
 extern void closeSideMidRush();
 extern void closeSideMidRushExperimental();
+extern void closeSideMidRushExperimentalElimns();
 extern void closeSideDoubleRushExperimental();
+extern void closeSideDoubleRushExperimentalElimns();
+
 
 extern void closeSideDoubleRush();
 extern void closeSideDoubleRush2();

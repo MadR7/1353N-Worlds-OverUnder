@@ -57,13 +57,15 @@ void closeSideMidRush(){
 void closeSideMidRushExperimental(){
     chassis.setPose(40, 56, 195);
     intake.move_voltage(12000);
-    chassis.moveToPoint(25, 14, 2000);
+    chassis.moveToPoint(25, 11, 2000);
     pros::delay(150);
     backRightWing.set_value(false);
     chassis.waitUntilDone();
     pros::delay(50);
-    intake.move_voltage(0);
+    
     chassis.moveToPose(41, 54, 270, 3000, {.forwards = false, .lead = 0, .maxSpeed = 90});
+    pros::delay(200);
+    intake.move_voltage(0);
     chassis.waitUntilDone();
     
     double x_val = backResetDist.get() * 0.0393701 + 9;

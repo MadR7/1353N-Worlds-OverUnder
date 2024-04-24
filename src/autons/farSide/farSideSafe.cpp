@@ -1,3 +1,4 @@
+#include "config.hpp"
 #include "main.h"
 
 void farSideSafe(){
@@ -108,16 +109,16 @@ void farSideSafeExperimental(){
     chassis.waitUntilDone();
     intake.move_voltage(0);
     
-    chassis.moveToPose(-51, 50, 405, 1500, {.forwards = false, .lead = 0, .maxSpeed = 100, .minSpeed = 40});
+    chassis.moveToPose(-51, 50, 405, 1500, {.forwards = false, .chasePower = 5, .lead = 0, .maxSpeed = 100, .minSpeed = 40});
     pros::delay(350);
     backLeftWing.set_value(true);
     chassis.waitUntilDone();
     
     //push triballs into the goal
-    chassis.turnToHeading(350, 1000, {.minSpeed = 30});
+    chassis.turnToHeading(350, 600, {.minSpeed = 50});
     chassis.waitUntilDone();
     backLeftWing.set_value(false);
-    chassis.turnToHeading(45, 1000, {.minSpeed = 30});
+    chassis.turnToHeading(45, 600, {.minSpeed = 50});
     chassis.waitUntilDone();
     backRightWing.set_value(true);
 
@@ -168,7 +169,7 @@ void farSideSafeExperimental(){
 
     //turn around and score it in the goal
     //chassis.turnToPoint(-50, 0, 1000, {.minSpeed = 100});
-    chassis.turnToHeading(240, 1000);
+    chassis.turnToHeading(240, 800);
     chassis.waitUntilDone();
     intake.move_voltage(-12000);
     pros::delay(400);
@@ -200,7 +201,11 @@ void farSideSafeExperimental(){
 
     chassis.moveToPoint(-50, 8, 1500, {.forwards = true});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-35, 8, 3000, {.forwards = false});
-     
+    chassis.moveToPose(-8, 40, 270, 3000, {.forwards = false, .chasePower = 6,  .minSpeed = 70});
+    backRightWing.set_value(true);
+    //chassis.moveToPoint(-30, 0, 1000, {.forwards = false,.minSpeed = 60});
+    chassis.waitUntilDone();
+    //chassis.turnToHeading(90, 1000);
+
 }
 

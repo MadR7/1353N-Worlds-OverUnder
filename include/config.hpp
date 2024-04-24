@@ -1,13 +1,19 @@
 #pragma once
 
 #include "api.h"
+#include "config.hpp"
 #include "lemlib/api.hpp"
 #include "EZ-Template/api.hpp"
+#include "pros/imu.hpp"
 
-
+extern pros::Imu imu;
 
 extern pros::Controller controller;
 extern lemlib::Chassis chassis;
+
+extern bool backLeftWingState;
+extern bool backRightWingState;
+
 
 extern pros::ADIDigitalIn leftBumper;
 extern pros::ADIDigitalIn rightBumper;

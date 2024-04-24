@@ -2,13 +2,13 @@
 
 
 void farSideWingRush(){
-/*
     chassis.setPose(-33, 55, 170);
     intake.move_voltage(120000);
-    chassis.moveToPose(-13, 10, 135, 1700, {.lead = 0.5, .minSpeed = 80});
+    chassis.moveToPose(-13, 10, 135, 1700, {.chasePower = 8, .lead = 0.5, .minSpeed = 80});
     chassis.waitUntilDone();
+    pros::delay(300);
     backRightWing.set_value(true);
-*/
+
 /*
     chassis.setPose(-52, 55, 135);
     intake.move_voltage(12000);
@@ -17,6 +17,7 @@ void farSideWingRush(){
     backRightWing.set_value(true);
   */
 
+/*
     chassis.setPose(-37, 55, 152);
     intake.move_voltage(12000);
     ///backRightWing.set_value(true);
@@ -28,6 +29,7 @@ void farSideWingRush(){
     //chassis.waitUntilDone();
     //backRightWing.set_value(true);
     pros::delay(150);  
+    
     chassis.moveToPose(-43, 61, 210, 1900, {.forwards = false, .lead = 0, .maxSpeed = 120, .minSpeed = 40});
     pros::delay(200);
     backRightWing.set_value(false);
@@ -123,10 +125,10 @@ void farSideWingRush(){
     chassis.waitUntilDone();
     chassis.turnToHeading(90, 2000, {.minSpeed = 60});
     */
-    backLeftWing.set_value(true);
-    backRightWing.set_value(true);
+    //backLeftWing.set_value(true);
+    //backRightWing.set_value(true);
    
-    chassis.moveToPoint(-45, 10, 1000, {.forwards = false});
+  //  chassis.moveToPoint(-45, 10, 1000, {.forwards = false});
 
 }
 void farSideWingRushex(){

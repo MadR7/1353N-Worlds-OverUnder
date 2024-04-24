@@ -1,6 +1,32 @@
+#include "config.hpp"
 #include "main.h"
 intakestate intake_state = NEUTRAL;
 wingstate wing_state = CLOSEBOTH;
+
+void automaticA(){
+  imu.tare_roll();
+  int rollval = 20; //I need to figure out what the actual value would be, this is just a placeholder
+  while(imu.get_roll() < rollval){
+    chassis.arcade(50, 0);
+  }
+  backRightWing.set_value(true);
+  chassis.arcade(0, 0);
+}
+
+void wingState(){
+  if (backLeftWingState){
+    backLeftWing.set_value(true);
+  }else{
+    backLeftWing.set_value(false);
+  }
+
+  if (backRightWingState){
+    backRightWing.set_value(true);
+  }else{
+    backRightWing.set_value(false);
+    
+  }
+}
 
 
 void robotActions(){
