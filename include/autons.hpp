@@ -12,6 +12,8 @@ extern void wingState();
 
 //CLOSE SIDE
 extern void closeSideSafe();
+extern void closeSideSafe1ball();
+extern void closeSideSafe2ball();
 extern void closeSideTopRush();
 extern void closeSideMidRush();
 extern void closeSideMidRushExperimental();

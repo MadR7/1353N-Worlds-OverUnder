@@ -14,7 +14,7 @@ pros::Motor rB(13, pros::E_MOTOR_GEARSET_06); // right back motor. port 13
 pros::MotorGroup leftMotors({lF, lM, lB}); // left motor group
 pros::MotorGroup rightMotors({rF, rM, rB}); // right motor group
 
-pros::Motor intakemtr1(-3);
+pros::Motor intakemtr1(-6);
 pros::Motor intakemtr2(16);
 
 pros::MotorGroup intake({intakemtr1, intakemtr2});

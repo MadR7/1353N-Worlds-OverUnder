@@ -110,8 +110,9 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-farSideSafeExperimental();
- // farSideMidRushExperimental();
+ // closeSideSafe2ball();
+  //farSideSafeExperimental();
+ farSideMidRushExperimental();
   //ez::as::auton_selector.selected_auton_call();
 }
 
